@@ -8,7 +8,7 @@ var Book = require("../models/").Book;
 
 /* GET: books listing */
 router.get('/', (req, res, next) => {
-  Book.findAll().then( books => {
+  Book.findAll({ order: [[ "createdAt", "DESC" ]]}).then( books => {
     res.render("index", { books: books, title: 'Books' });
   });
 });
@@ -36,13 +36,12 @@ router.get('/new', (req, res, next) => {
   res.render("books/new", { book: {}, title: "New Books" });
 });
 
-
-/* GET: individual book */
-router.get("/:id", (req, res, next) => {
-  Book.findById(req.params.id)
+/* GET: Update Book */
+router.get("/:id/update", (req, res, next) => {
+  Book.findByPk(req.params.id)
     .then( book => {
       if(book) {
-        res.render("books/show", {book: book, title: book.title});  
+        res.render("books/update", {book: book, title: "Update Book"});
       } else {
         res.send(404);
       }
@@ -50,5 +49,44 @@ router.get("/:id", (req, res, next) => {
     res.send(500, error);
  });
 }); 
+
+
+/* GET: individual book*/
+router.get("/:id", (req, res, next) => {
+  Book.findByPk(req.params.id)
+    .then( book => {
+      if(book) {
+        res.render("books/show", {book: book, title: "Book Details"});
+      } else {
+        res.send(404);
+      }
+  }).catch(function(error){
+    res.send(500, error);
+ });
+}); 
+
+/* PUT: Update Book*/
+router.put("/:id", (req, res, next) => {
+  Book.findByPk(req.params.id).then( book => {
+    if (book) {
+      return book.update(req.body);
+    } else {
+      res.send(404)
+    }
+  }).then( book => {
+    res.redirect("/books/" + book.id);
+  }).catch( error => {
+    if (error.name === "SequelizeValidationError") {
+      var book = Book.build(req.body);
+      book.id = req.params.id;
+      res.render("books/:id", {book: book, errors: error, title: "Update Book"})
+    } else {
+      throw error;
+    }
+  }).catch( error => {
+    res.send(500, error);
+  });
+});
+
 
 module.exports = router;
