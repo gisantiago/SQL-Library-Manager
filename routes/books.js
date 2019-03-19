@@ -36,7 +36,7 @@ router.get('/new', (req, res, next) => {
   res.render("books/new", { book: {}, title: "New Books" });
 });
 
-/* GET: Update Book */
+/* GET: Update Book*/
 router.get("/:id/update", (req, res, next) => {
   Book.findByPk(req.params.id)
     .then( book => {
@@ -45,10 +45,25 @@ router.get("/:id/update", (req, res, next) => {
       } else {
         res.send(404);
       }
-  }).catch(function(error){
+  }).catch( error => {
     res.send(500, error);
  });
 }); 
+
+/* GET: Delete book view */
+router.get("/:id/delete", (req, res, next) => {
+  Book.findByPk(req.params.id)
+    .then( book => {  
+      if(book) {
+        res.render("books/delete", {book: book, title: "Delete Book"});
+      } else {
+        res.send(404);
+      }
+  }).catch( error => {
+      res.send(500, error);
+   });
+});
+
 
 
 /* GET: individual book*/
@@ -60,7 +75,7 @@ router.get("/:id", (req, res, next) => {
       } else {
         res.send(404);
       }
-  }).catch(function(error){
+  }).catch( error => {
     res.send(500, error);
  });
 }); 
@@ -88,5 +103,19 @@ router.post("/:id", (req, res, next) => {
   });
 });
 
+/* DELETE individual book */
+router.delete("/:id", (req, res, next) => {
+  Book.findByPk(req.params.id).then( book => {  
+    if(book) {
+      return book.destroy();
+    } else {
+      res.send(404);
+    }
+  }).then( () => {
+    res.redirect("/books");    
+  }).catch( error => {
+      res.send(500, error);
+   });
+});
 
 module.exports = router;
