@@ -65,8 +65,8 @@ router.get("/:id", (req, res, next) => {
  });
 }); 
 
-/* PUT: Update Book*/
-router.put("/:id", (req, res, next) => {
+/* POST: Update Book*/
+router.post("/:id", (req, res, next) => {
   Book.findByPk(req.params.id).then( book => {
     if (book) {
       return book.update(req.body);
