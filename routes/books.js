@@ -55,7 +55,7 @@ router.get("/:id/delete", (req, res, next) => {
   Book.findByPk(req.params.id)
     .then( book => {  
       if(book) {
-        res.render("books/delete", {book: book, title: "Delete Book"});
+       res.render("books/delete", {book: book, title: "Delete Book"});
       } else {
         res.send(404);
       }
@@ -112,10 +112,14 @@ router.delete("/:id", (req, res, next) => {
       res.send(404);
     }
   }).then( () => {
-    res.redirect("/books");    
+    return res.redirect("/books");    
   }).catch( error => {
       res.send(500, error);
    });
+});
+
+router.get( (req, res) => {
+  res.status(404).render("error");
 });
 
 module.exports = router;
