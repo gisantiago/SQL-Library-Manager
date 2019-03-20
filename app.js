@@ -24,19 +24,9 @@ app.use('/', indexRouter);
 app.use('/books', booksRouter);
 
 // catch 404 and forward to error handler
-app.use((req, res, next) => {
-  const err = new Error("Opps!! Something went wrong");
-  err.status = 404;
-  next(err);
+app.use(function (req, res, next) {
+  res.status(404).render('notfound')
 });
 
-// Error handler
-app.use((err, req, res, next) => {
-  res.locals.error = err;
-  // render the error page
-  res.status(err.status || 500);
-  res.render('notfound');
-  next();
-});
 
 module.exports = app;
