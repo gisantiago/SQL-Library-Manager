@@ -112,7 +112,7 @@ router.post("/:id", (req, res, next) => {
       res.send(404);
     }
   }).then( () => {
-    return res.redirect("/books");    
+    res.redirect("/books/");    
   }).catch( error => {
       res.send(500, error);
    });
