@@ -43,7 +43,7 @@ router.get("/:id", (req, res, next) => {
       if(book) {
         res.render("books/show", {book: book, title: "Book Details"});
       } else {
-        res.send(404);
+        res.render('notfound');
       }
   }).catch( error => {
     res.send(500, error);
@@ -118,9 +118,6 @@ router.post("/:id/delete", (req, res, next) => {
    });
 });
 
-// router.get( '*', (req, res) => {
-//   res.status(404).render("/books/notfound");
-// });
 
 
 module.exports = router;
