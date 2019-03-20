@@ -104,7 +104,7 @@ router.post("/:id", (req, res, next) => {
 });
 
 /* DELETE individual book */
-router.delete("/:id", (req, res, next) => {
+router.post("/:id", (req, res, next) => {
   Book.findByPk(req.params.id).then( book => {  
     if(book) {
       return book.destroy();
