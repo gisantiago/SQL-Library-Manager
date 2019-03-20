@@ -36,36 +36,6 @@ router.get('/new', (req, res, next) => {
   res.render("books/new", { book: {}, title: "New Books" });
 });
 
-/* GET: Update Book*/
-router.get("/:id/update", (req, res, next) => {
-  Book.findByPk(req.params.id)
-    .then( book => {
-      if(book) {
-        res.render("books/update", {book: book, title: "Update Book"});
-      } else {
-        res.send(404);
-      }
-  }).catch( error => {
-    res.send(500, error);
- });
-}); 
-
-/* GET: Delete book view */
-router.get("/:id/delete", (req, res, next) => {
-  Book.findByPk(req.params.id)
-    .then( book => {  
-      if(book) {
-       res.render("books/delete", {book: book, title: "Delete Book"});
-      } else {
-        res.send(404);
-      }
-  }).catch( error => {
-      res.send(500, error);
-   });
-});
-
-
-
 /* GET: individual book*/
 router.get("/:id", (req, res, next) => {
   Book.findByPk(req.params.id)
@@ -80,8 +50,23 @@ router.get("/:id", (req, res, next) => {
  });
 }); 
 
+/* GET: Update Book*/
+router.get("/:id/update", (req, res, next) => {
+  Book.findByPk(req.params.id)
+    .then( book => {
+      if(book) {
+        res.render("books/update", {book: book, title: "Update Book"});
+      } else {
+        res.send(404);
+      }
+  }).catch( error => {
+    res.send(500, error);
+ });
+}); 
+
+
 /* POST: Update Book*/
-router.post("/:id", (req, res, next) => {
+router.post("/:id/update", (req, res, next) => {
   Book.findByPk(req.params.id).then( book => {
     if (book) {
       return book.update(req.body);
@@ -103,14 +88,29 @@ router.post("/:id", (req, res, next) => {
   });
 });
 
+/* GET: Delete book view */
+router.get("/:id/delete", (req, res, next) => {
+  Book.findByPk(req.params.id)
+    .then( book => {  
+      if(book) {
+       res.render("books/delete", {book: book, title: "Delete Book"});
+      } else {
+        res.send(404);
+      }
+  }).catch( error => {
+      res.send(500, error);
+   });
+});
+
 /* DELETE individual book */
-router.delete("/:id", (req, res, next) => {
+router.post("/:id/delete", (req, res, next) => {
   Book.findByPk(req.params.id).then( book => {  
     if(book) {
       return book.destroy();
     } else {
       res.send(404);
     }
+    console.log(`Book: ${book.id}`);
   }).then( () => {
     res.redirect("/books");    
   }).catch( error => {
@@ -118,8 +118,8 @@ router.delete("/:id", (req, res, next) => {
    });
 });
 
-router.get( (req, res) => {
-  res.status(404).render("error");
-});
+// router.get( '*', (req, res) => {
+//   res.status(404).render("/books/notfound");
+// });
 
 module.exports = router;
