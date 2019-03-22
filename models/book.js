@@ -1,4 +1,7 @@
 'use strict';
+
+// const sequelizePaginate = require('sequelize-paginate');
+
 module.exports = (sequelize, DataTypes) => {
   const Book = sequelize.define('Book', {
     title: {
@@ -25,3 +28,4 @@ module.exports = (sequelize, DataTypes) => {
   };
   return Book;
 };
+
