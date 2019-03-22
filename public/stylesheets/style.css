@@ -116,6 +116,7 @@ input[type=text] {
   margin-bottom: 12px; /* Add some space below the input */
 }
 
+
 #table {
   border-collapse: collapse; /* Collapse borders */
   width: 50%; /* 50% -width */
@@ -136,7 +137,8 @@ input[type=text] {
 #table tr.header, #table tr:hover {
   /* Add a grey background color to the table header and on hover */
   background-color: #f1f1f1;
-}
+} 
+
 
 #nav{
   margin: 40px 0 0 0;
