@@ -106,10 +106,10 @@ input[type=text] {
 }
 
 #myInput {
-  background-image: url('../images/searchicon.png'); /* Add a search icon to input */
-  background-position: 10px 12px; /* Position the search icon */
+  background-image: url('../images/searchicon11.png'); /* Add a search icon to input */
+  background-position: 3px 8px; /* Position the search icon */
   background-repeat: no-repeat; /* Do not repeat the icon image */
-  width: 45%; /* Full-width */
+  width: 45%; /* 45% -width */
   font-size: 16px; /* Increase font-size */
   padding: 12px 20px 12px 40px; /* Add some padding */
   border: 1px solid #ddd; /* Add a grey border */
@@ -118,7 +118,7 @@ input[type=text] {
 
 #table {
   border-collapse: collapse; /* Collapse borders */
-  width: 50%; /* Full-width */
+  width: 50%; /* 50% -width */
   border: 1px solid #ddd; /* Add a grey border */
   font-size: 18px; /* Increase font-size */
 }
@@ -137,3 +137,26 @@ input[type=text] {
   /* Add a grey background color to the table header and on hover */
   background-color: #f1f1f1;
 }
+
+#nav{
+  margin: 40px 0 0 0;
+  text-align: center;
+}
+ 
+  #nav {
+    display: inline;
+  }
+
+    #nav a{
+      border: 1px solid #eaeaea;
+      border-radius: 5px;
+      padding: 3px 8px;
+      text-decoration: none;
+      color: #01B189;
+    }
+
+    #nav a.active,
+    #nav a:hover{
+      background-color: #01B189;
+      color: #fff;
+    }

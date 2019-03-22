@@ -6,10 +6,8 @@
 
 $(document).ready(function(){
 
-    
-
-
-    $('#table').after('<div id="nav"></div>');
+    $('#table').after('<p id="empty"></p>');
+    $('#empty').after('<div id="nav"></div>');
     var rowsShown = 6;
     var rowsTotal = $('#table tbody tr').length;
     var numPages = rowsTotal/rowsShown;
