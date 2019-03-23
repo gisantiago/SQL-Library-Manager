@@ -2,7 +2,7 @@ extends layout
 
 block content
   .search-container
-    input#myInput(type='text', onkeyup='searchOn()', placeholder='Search for books..')
+    input#myInput(type='text', placeholder='Search for books..')
   h1= title
   p
     a.button(href="/books/new") Create New Book
@@ -20,28 +20,3 @@ block content
           td #{book.author}
           td #{book.genre}
           td #{book.year}
-
-  //- search function
-  script.
-    function searchOn() {
-    var input, filter, table, tr, td, i, txtValue;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    table = document.getElementById("table");
-    tr = table.getElementsByTagName("tr");
-    th = table.getElementsByTagName("th");
-    for (i = 1; i < tr.length; i++) {
-    tr[i].style.display = "none";
-    // Loop through all table rows and columns, and hide those who don't match the search query
-    for (var j = 0; j < th.length; j++) {
-    td= tr[i].getElementsByTagName("td")[j];
-    if (td) {
-    txtValue = td.textContent || td.innerText;
-    if (txtValue.toUpperCase().indexOf(filter) > -1){
-    tr[i].style.display = "";
-    break;
-    }
-    }
-    }
-    }
-    }
