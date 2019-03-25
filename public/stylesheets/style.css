@@ -1,6 +1,10 @@
 body {
   padding: 10px 50px 50px;
   font: 18px "Garamond", serif;
+  align-content: center;
+  width:90%; /*Takes 90% width from WebContainer*/
+  height: auto;
+  margin: auto;
 }
 
 a {
@@ -102,14 +106,31 @@ input[type=text] {
 }
 
 .search-container {
-  float: center;
+  vertical-align: middle;
+  width:40%; /*Takes 40% width from WebContainer*/
+  height: auto;
+  margin: auto;
+}
+
+.center {
+  width:50%; /*Takes 40% width from WebContainer*/
+  height: auto;
+  margin: auto;
+  margin-bottom: 12px; /* Add some space below the input */
+}
+
+#paginationUL {
+  width:50%; /*Takes 40% width from WebContainer*/
+  height: auto;
+  margin: auto;
+  margin-bottom: 12px; /* Add some space below the input */
 }
 
 #myInput {
   background-image: url('../images/searchicon11.png'); /* Add a search icon to input */
   background-position: 3px 8px; /* Position the search icon */
   background-repeat: no-repeat; /* Do not repeat the icon image */
-  width: 45%; /* 45% -width */
+  width:80%; /* 45% -width */
   font-size: 16px; /* Increase font-size */
   padding: 12px 20px 12px 40px; /* Add some padding */
   border: 1px solid #ddd; /* Add a grey border */
@@ -119,9 +140,12 @@ input[type=text] {
 
 #table {
   border-collapse: collapse; /* Collapse borders */
-  width: 50%; /* 50% -width */
+  /* width: 50%; 50% -width */
   border: 1px solid #ddd; /* Add a grey border */
   font-size: 18px; /* Increase font-size */
+  width:50%; /*Takes 80% width from WebContainer*/
+  height: auto;
+  margin: auto;
 }
 
 #table th, #table td {
@@ -140,25 +164,40 @@ input[type=text] {
 } 
 
 
-#nav{
+.pagination{
   margin: 40px 0 0 0;
   text-align: center;
 }
  
-  #nav {
+  .pagination {
     display: inline;
   }
 
-    #nav a{
+    .pagination a{
       border: 1px solid #eaeaea;
       border-radius: 5px;
       padding: 3px 8px;
       text-decoration: none;
       color: #01B189;
+      float: left;
+      margin: 5px;
     }
 
-    #nav a.active,
-    #nav a:hover{
+    .pagination a.active,
+    .pagination a:hover{
       background-color: #01B189;
       color: #fff;
     }
+
+.noSearch {
+  text-align: center;
+  color: red;
+  vertical-align: middle;
+  line-height: 30px;
+  border: #555 solid .5px;
+  border-radius: 10px;
+  /* margin-left: 300px; */
+  width:50%; 
+  height: auto;
+  margin: auto;
+}

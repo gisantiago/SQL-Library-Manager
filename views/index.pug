@@ -3,8 +3,8 @@ extends layout
 block content
   .search-container
     input#myInput(type='text', placeholder='Search for books..')
-  h1= title
-  p
+  h1.center= title
+  p.center
     a.button(href="/books/new") Create New Book
     table#table
       thead
@@ -20,3 +20,4 @@ block content
           td #{book.author}
           td #{book.genre}
           td #{book.year}
+  p#empty
